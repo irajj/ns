@@ -1,0 +1,20 @@
+qdBasic Scanning Commands
+Goal	Command							Example
+
+Scan a Single Target	nmap [target]		nmap 192.168.0.1
+
+Scan Multiple Targets	nmap [target1, target2, etc		nmap 192.168.0.1 192.168.0.2
+
+Scan a Range of Hosts	nmap [range of ip addresses]	nmap 192.168.0.1-10
+
+Scan an Entire Subnet	nmap [ip address/cdir]			nmap 192.168.0.1/24
+
+Scan Random Hosts	nmap -iR [number]	nmap -iR 0
+
+Excluding Targets Using a List	nmap [targets] – excludefile [list.txt]	nmap 192.168.0.1/24 –excludefile notargets.txt
+
+Perform an Aggressive Scan	nmap -A [target]	nmap -A 192.168.0.1
+
+Scan an IPv6 Target	nmap -6 [target]	nmap -6 1aff:3c21:47b1:0000:0000:0000:0000:2afe
+
+Excluding Targets from a Scan	nmap [targets] – exclude [targets]	nmap 192.168.0.1/24 –exclude 192.168.0.100, 192.168.0.200

@@ -1,0 +1,578 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Program Files (x86)\Nmap> nmap
+Nmap 7.92 ( https://nmap.org )
+Usage: nmap [Scan Type(s)] [Options] {target specification}
+TARGET SPECIFICATION:
+  Can pass hostnames, IP addresses, networks, etc.
+  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254
+  -iL <inputfilename>: Input from list of hosts/networks
+  -iR <num hosts>: Choose random targets
+  --exclude <host1[,host2][,host3],...>: Exclude hosts/networks
+  --excludefile <exclude_file>: Exclude list from file
+HOST DISCOVERY:
+  -sL: List Scan - simply list targets to scan
+  -sn: Ping Scan - disable port scan
+  -Pn: Treat all hosts as online -- skip host discovery
+  -PS/PA/PU/PY[portlist]: TCP SYN/ACK, UDP or SCTP discovery to given ports
+  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes
+  -PO[protocol list]: IP Protocol Ping
+  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]
+  --dns-servers <serv1[,serv2],...>: Specify custom DNS servers
+  --system-dns: Use OS's DNS resolver
+  --traceroute: Trace hop path to each host
+SCAN TECHNIQUES:
+  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+  -sU: UDP Scan
+  -sN/sF/sX: TCP Null, FIN, and Xmas scans
+  --scanflags <flags>: Customize TCP scan flags
+  -sI <zombie host[:probeport]>: Idle scan
+  -sY/sZ: SCTP INIT/COOKIE-ECHO scans
+  -sO: IP protocol scan
+  -b <FTP relay host>: FTP bounce scan
+PORT SPECIFICATION AND SCAN ORDER:
+  -p <port ranges>: Only scan specified ports
+    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9
+  --exclude-ports <port ranges>: Exclude the specified ports from scanning
+  -F: Fast mode - Scan fewer ports than the default scan
+  -r: Scan ports consecutively - don't randomize
+  --top-ports <number>: Scan <number> most common ports
+  --port-ratio <ratio>: Scan ports more common than <ratio>
+SERVICE/VERSION DETECTION:
+  -sV: Probe open ports to determine service/version info
+  --version-intensity <level>: Set from 0 (light) to 9 (try all probes)
+  --version-light: Limit to most likely probes (intensity 2)
+  --version-all: Try every single probe (intensity 9)
+  --version-trace: Show detailed version scan activity (for debugging)
+SCRIPT SCAN:
+  -sC: equivalent to --script=default
+  --script=<Lua scripts>: <Lua scripts> is a comma separated list of
+           directories, script-files or script-categories
+  --script-args=<n1=v1,[n2=v2,...]>: provide arguments to scripts
+  --script-args-file=filename: provide NSE script args in a file
+  --script-trace: Show all data sent and received
+  --script-updatedb: Update the script database.
+  --script-help=<Lua scripts>: Show help about scripts.
+           <Lua scripts> is a comma-separated list of script-files or
+           script-categories.
+OS DETECTION:
+  -O: Enable OS detection
+  --osscan-limit: Limit OS detection to promising targets
+  --osscan-guess: Guess OS more aggressively
+TIMING AND PERFORMANCE:
+  Options which take <time> are in seconds, or append 'ms' (milliseconds),
+  's' (seconds), 'm' (minutes), or 'h' (hours) to the value (e.g. 30m).
+  -T<0-5>: Set timing template (higher is faster)
+  --min-hostgroup/max-hostgroup <size>: Parallel host scan group sizes
+  --min-parallelism/max-parallelism <numprobes>: Probe parallelization
+  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout <time>: Specifies
+      probe round trip time.
+  --max-retries <tries>: Caps number of port scan probe retransmissions.
+  --host-timeout <time>: Give up on target after this long
+  --scan-delay/--max-scan-delay <time>: Adjust delay between probes
+  --min-rate <number>: Send packets no slower than <number> per second
+  --max-rate <number>: Send packets no faster than <number> per second
+FIREWALL/IDS EVASION AND SPOOFING:
+  -f; --mtu <val>: fragment packets (optionally w/given MTU)
+  -D <decoy1,decoy2[,ME],...>: Cloak a scan with decoys
+  -S <IP_Address>: Spoof source address
+  -e <iface>: Use specified interface
+  -g/--source-port <portnum>: Use given port number
+  --proxies <url1,[url2],...>: Relay connections through HTTP/SOCKS4 proxies
+  --data <hex string>: Append a custom payload to sent packets
+  --data-string <string>: Append a custom ASCII string to sent packets
+  --data-length <num>: Append random data to sent packets
+  --ip-options <options>: Send packets with specified ip options
+  --ttl <val>: Set IP time-to-live field
+  --spoof-mac <mac address/prefix/vendor name>: Spoof your MAC address
+  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum
+OUTPUT:
+  -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3,
+     and Grepable format, respectively, to the given filename.
+  -oA <basename>: Output in the three major formats at once
+  -v: Increase verbosity level (use -vv or more for greater effect)
+  -d: Increase debugging level (use -dd or more for greater effect)
+  --reason: Display the reason a port is in a particular state
+  --open: Only show open (or possibly open) ports
+  --packet-trace: Show all packets sent and received
+  --iflist: Print host interfaces and routes (for debugging)
+  --append-output: Append to rather than clobber specified output files
+  --resume <filename>: Resume an aborted scan
+  --noninteractive: Disable runtime interactions via keyboard
+  --stylesheet <path/URL>: XSL stylesheet to transform XML output to HTML
+  --webxml: Reference stylesheet from Nmap.Org for more portable XML
+  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output
+MISC:
+  -6: Enable IPv6 scanning
+  -A: Enable OS detection, version detection, script scanning, and traceroute
+  --datadir <dirname>: Specify custom Nmap data file location
+  --send-eth/--send-ip: Send using raw ethernet frames or IP packets
+  --privileged: Assume that the user is fully privileged
+  --unprivileged: Assume the user lacks raw socket privileges
+  -V: Print version number
+  -h: Print this help summary page.
+EXAMPLES:
+  nmap -v -A scanme.nmap.org
+  nmap -v -sn 192.168.0.0/16 10.0.0.0/8
+  nmap -v -iR 10000 -Pn -p 80
+SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
+PS C:\Program Files (x86)\Nmap> ping 8.8.8.8
+
+Pinging 8.8.8.8 with 32 bytes of data:
+Reply from 8.8.8.8: bytes=32 time=1601ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=323ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=209ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=100ms TTL=117
+
+Ping statistics for 8.8.8.8:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 100ms, Maximum = 1601ms, Average = 558ms
+PS C:\Program Files (x86)\Nmap> ping 8.8.8.8 -p
+Unable to contact IP driver. General failure.
+PS C:\Program Files (x86)\Nmap> ping 8.8.8.8 -t
+
+Pinging 8.8.8.8 with 32 bytes of data:
+Reply from 8.8.8.8: bytes=32 time=688ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=1053ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=390ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=109ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=1800ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=289ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=1389ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=813ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=94ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=92ms TTL=117
+Reply from 8.8.8.8: bytes=32 time=264ms TTL=117
+
+Ping statistics for 8.8.8.8:
+    Packets: Sent = 11, Received = 11, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 92ms, Maximum = 1800ms, Average = 634ms
+Control-C
+PS C:\Program Files (x86)\Nmap> ping scanme.nmap.org
+
+Pinging scanme.nmap.org [45.33.32.156] with 32 bytes of data:
+Reply from 45.33.32.156: bytes=32 time=273ms TTL=52
+Reply from 45.33.32.156: bytes=32 time=301ms TTL=52
+Reply from 45.33.32.156: bytes=32 time=294ms TTL=52
+Reply from 45.33.32.156: bytes=32 time=332ms TTL=52
+
+Ping statistics for 45.33.32.156:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 273ms, Maximum = 332ms, Average = 300ms
+PS C:\Program Files (x86)\Nmap> nmap scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:03 India Standard Time
+PS C:\Program Files (x86)\Nmap> nmap scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:03 India Standard Time
+dnet: Failed to open device eth1
+QUITTING!
+PS C:\Program Files (x86)\Nmap> namp -h
+namp : The term 'namp' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path
+was included, verify that the path is correct and try again.
+At line:1 char:1
++ namp -h
++ ~~~~
+    + CategoryInfo          : ObjectNotFound: (namp:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Program Files (x86)\Nmap> nmap -h
+Nmap 7.92 ( https://nmap.org )
+Usage: nmap [Scan Type(s)] [Options] {target specification}
+TARGET SPECIFICATION:
+  Can pass hostnames, IP addresses, networks, etc.
+  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254
+  -iL <inputfilename>: Input from list of hosts/networks
+  -iR <num hosts>: Choose random targets
+  --exclude <host1[,host2][,host3],...>: Exclude hosts/networks
+  --excludefile <exclude_file>: Exclude list from file
+HOST DISCOVERY:
+  -sL: List Scan - simply list targets to scan
+  -sn: Ping Scan - disable port scan
+  -Pn: Treat all hosts as online -- skip host discovery
+  -PS/PA/PU/PY[portlist]: TCP SYN/ACK, UDP or SCTP discovery to given ports
+  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes
+  -PO[protocol list]: IP Protocol Ping
+  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]
+  --dns-servers <serv1[,serv2],...>: Specify custom DNS servers
+  --system-dns: Use OS's DNS resolver
+  --traceroute: Trace hop path to each host
+SCAN TECHNIQUES:
+  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+  -sU: UDP Scan
+  -sN/sF/sX: TCP Null, FIN, and Xmas scans
+  --scanflags <flags>: Customize TCP scan flags
+  -sI <zombie host[:probeport]>: Idle scan
+  -sY/sZ: SCTP INIT/COOKIE-ECHO scans
+  -sO: IP protocol scan
+  -b <FTP relay host>: FTP bounce scan
+PORT SPECIFICATION AND SCAN ORDER:
+  -p <port ranges>: Only scan specified ports
+    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9
+  --exclude-ports <port ranges>: Exclude the specified ports from scanning
+  -F: Fast mode - Scan fewer ports than the default scan
+  -r: Scan ports consecutively - don't randomize
+  --top-ports <number>: Scan <number> most common ports
+  --port-ratio <ratio>: Scan ports more common than <ratio>
+SERVICE/VERSION DETECTION:
+  -sV: Probe open ports to determine service/version info
+  --version-intensity <level>: Set from 0 (light) to 9 (try all probes)
+  --version-light: Limit to most likely probes (intensity 2)
+  --version-all: Try every single probe (intensity 9)
+  --version-trace: Show detailed version scan activity (for debugging)
+SCRIPT SCAN:
+  -sC: equivalent to --script=default
+  --script=<Lua scripts>: <Lua scripts> is a comma separated list of
+           directories, script-files or script-categories
+  --script-args=<n1=v1,[n2=v2,...]>: provide arguments to scripts
+  --script-args-file=filename: provide NSE script args in a file
+  --script-trace: Show all data sent and received
+  --script-updatedb: Update the script database.
+  --script-help=<Lua scripts>: Show help about scripts.
+           <Lua scripts> is a comma-separated list of script-files or
+           script-categories.
+OS DETECTION:
+  -O: Enable OS detection
+  --osscan-limit: Limit OS detection to promising targets
+  --osscan-guess: Guess OS more aggressively
+TIMING AND PERFORMANCE:
+  Options which take <time> are in seconds, or append 'ms' (milliseconds),
+  's' (seconds), 'm' (minutes), or 'h' (hours) to the value (e.g. 30m).
+  -T<0-5>: Set timing template (higher is faster)
+  --min-hostgroup/max-hostgroup <size>: Parallel host scan group sizes
+  --min-parallelism/max-parallelism <numprobes>: Probe parallelization
+  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout <time>: Specifies
+      probe round trip time.
+  --max-retries <tries>: Caps number of port scan probe retransmissions.
+  --host-timeout <time>: Give up on target after this long
+  --scan-delay/--max-scan-delay <time>: Adjust delay between probes
+  --min-rate <number>: Send packets no slower than <number> per second
+  --max-rate <number>: Send packets no faster than <number> per second
+FIREWALL/IDS EVASION AND SPOOFING:
+  -f; --mtu <val>: fragment packets (optionally w/given MTU)
+  -D <decoy1,decoy2[,ME],...>: Cloak a scan with decoys
+  -S <IP_Address>: Spoof source address
+  -e <iface>: Use specified interface
+  -g/--source-port <portnum>: Use given port number
+  --proxies <url1,[url2],...>: Relay connections through HTTP/SOCKS4 proxies
+  --data <hex string>: Append a custom payload to sent packets
+  --data-string <string>: Append a custom ASCII string to sent packets
+  --data-length <num>: Append random data to sent packets
+  --ip-options <options>: Send packets with specified ip options
+  --ttl <val>: Set IP time-to-live field
+  --spoof-mac <mac address/prefix/vendor name>: Spoof your MAC address
+  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum
+OUTPUT:
+  -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3,
+     and Grepable format, respectively, to the given filename.
+  -oA <basename>: Output in the three major formats at once
+  -v: Increase verbosity level (use -vv or more for greater effect)
+  -d: Increase debugging level (use -dd or more for greater effect)
+  --reason: Display the reason a port is in a particular state
+  --open: Only show open (or possibly open) ports
+  --packet-trace: Show all packets sent and received
+  --iflist: Print host interfaces and routes (for debugging)
+  --append-output: Append to rather than clobber specified output files
+  --resume <filename>: Resume an aborted scan
+  --noninteractive: Disable runtime interactions via keyboard
+  --stylesheet <path/URL>: XSL stylesheet to transform XML output to HTML
+  --webxml: Reference stylesheet from Nmap.Org for more portable XML
+  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output
+MISC:
+  -6: Enable IPv6 scanning
+  -A: Enable OS detection, version detection, script scanning, and traceroute
+  --datadir <dirname>: Specify custom Nmap data file location
+  --send-eth/--send-ip: Send using raw ethernet frames or IP packets
+  --privileged: Assume that the user is fully privileged
+  --unprivileged: Assume the user lacks raw socket privileges
+  -V: Print version number
+  -h: Print this help summary page.
+EXAMPLES:
+  nmap -v -A scanme.nmap.org
+  nmap -v -sn 192.168.0.0/16 10.0.0.0/8
+  nmap -v -iR 10000 -Pn -p 80
+SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
+PS C:\Program Files (x86)\Nmap>       
+
+
+
+
+
+
+
+
+
+
+Microsoft Windows [Version 10.0.22000.318]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\WINDOWS\system32>cd c:\program files (x86)\nmap
+
+c:\Program Files (x86)\Nmap>nmap scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:05 India Standard Time
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.34s latency).
+Not shown: 995 closed tcp ports (reset)
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+25/tcp    filtered smtp
+80/tcp    open     http
+9929/tcp  open     nping-echo
+31337/tcp open     Elite
+
+Nmap done: 1 IP address (1 host up) scanned in 99.67 seconds
+
+c:\Program Files (x86)\Nmap>nmap -v scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:22 India Standard Time
+Initiating Ping Scan at 12:22
+Scanning scanme.nmap.org (45.33.32.156) [4 ports]
+Completed Ping Scan at 12:22, 0.29s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 12:22
+Completed Parallel DNS resolution of 1 host. at 12:22, 0.01s elapsed
+Initiating SYN Stealth Scan at 12:22
+Scanning scanme.nmap.org (45.33.32.156) [1000 ports]
+Discovered open port 22/tcp on 45.33.32.156
+Discovered open port 80/tcp on 45.33.32.156
+Discovered open port 31337/tcp on 45.33.32.156
+Discovered open port 9929/tcp on 45.33.32.156
+Completed SYN Stealth Scan at 12:23, 28.49s elapsed (1000 total ports)
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.38s latency).
+Not shown: 994 closed tcp ports (reset)
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+25/tcp    filtered smtp
+80/tcp    open     http
+5060/tcp  filtered sip
+9929/tcp  open     nping-echo
+31337/tcp open     Elite
+
+Read data files from: c:\Program Files (x86)\Nmap
+Nmap done: 1 IP address (1 host up) scanned in 29.00 seconds
+           Raw packets sent: 1138 (50.048KB) | Rcvd: 1138 (45.596KB)
+
+c:\Program Files (x86)\Nmap>nmap scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:24 India Standard Time
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.28s latency).
+Not shown: 994 closed tcp ports (reset)
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+25/tcp    filtered smtp
+80/tcp    open     http
+5060/tcp  filtered sip
+9929/tcp  open     nping-echo
+31337/tcp open     Elite
+
+Nmap done: 1 IP address (1 host up) scanned in 57.29 seconds
+
+c:\Program Files (x86)\Nmap>nmap --dns --server
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:25 India Standard Time
+WARNING: No targets were specified, so 0 hosts scanned.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 0.07 seconds
+
+c:\Program Files (x86)\Nmap>nmap --dns --server 1.1.1.1 scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:25 India Standard Time
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Stats: 0:00:42 elapsed; 0 hosts completed (2 up), 2 undergoing SYN Stealth Scan
+SYN Stealth Scan Timing: About 22.54% done; ETC: 12:28 (0:02:17 remaining)
+Stats: 0:00:42 elapsed; 0 hosts completed (2 up), 2 undergoing SYN Stealth Scan
+SYN Stealth Scan Timing: About 22.55% done; ETC: 12:28 (0:02:17 remaining)
+^C
+c:\Program Files (x86)\Nmap>nmap --dns -server 1.1.1.1 scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:26 India Standard Time
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+^C
+c:\Program Files (x86)\Nmap>nmap -v --dns -server 8.8.8.8 scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:30 India Standard Time
+Initiating Ping Scan at 12:30
+Scanning 2 hosts [4 ports/host]
+Completed Ping Scan at 12:30, 0.35s elapsed (2 total hosts)
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Initiating SYN Stealth Scan at 12:30
+Scanning 2 hosts [1000 ports/host]
+Discovered open port 80/tcp on 45.33.32.156
+Discovered open port 443/tcp on 8.8.8.8
+Discovered open port 53/tcp on 8.8.8.8
+Discovered open port 22/tcp on 45.33.32.156
+SYN Stealth Scan Timing: About 12.72% done; ETC: 12:34 (0:03:33 remaining)
+SYN Stealth Scan Timing: About 14.44% done; ETC: 12:37 (0:06:02 remaining)
+SYN Stealth Scan Timing: About 16.94% done; ETC: 12:39 (0:07:26 remaining)
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+Discovered open port 9929/tcp on 45.33.32.156
+SYN Stealth Scan Timing: About 20.14% done; ETC: 12:40 (0:08:00 remaining)
+SYN Stealth Scan Timing: About 21.86% done; ETC: 12:41 (0:09:00 remaining)
+SYN Stealth Scan Timing: About 23.14% done; ETC: 12:43 (0:10:01 remaining)
+^C
+c:\Program Files (x86)\Nmap>nslookup cpi.edu.in
+DNS request timed out.
+    timeout was 2 seconds.
+Server:  UnKnown
+Address:  192.168.1.1
+
+DNS request timed out.
+    timeout was 2 seconds.
+DNS request timed out.
+    timeout was 2 seconds.
+DNS request timed out.
+    timeout was 2 seconds.
+DNS request timed out.
+    timeout was 2 seconds.
+*** Request to UnKnown timed-out
+
+c:\Program Files (x86)\Nmap>nmap -v --dns -server 8.8.8.8 162.0.229.120 scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:37 India Standard Time
+Initiating Ping Scan at 12:37
+Scanning 3 hosts [4 ports/host]
+Completed Ping Scan at 12:37, 0.47s elapsed (3 total hosts)
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Initiating SYN Stealth Scan at 12:37
+Scanning 3 hosts [1000 ports/host]
+Discovered open port 21/tcp on 162.0.229.120
+Discovered open port 993/tcp on 162.0.229.120
+Discovered open port 110/tcp on 162.0.229.120
+Discovered open port 143/tcp on 162.0.229.120
+Discovered open port 53/tcp on 162.0.229.120
+Discovered open port 995/tcp on 162.0.229.120
+Discovered open port 53/tcp on 8.8.8.8
+Discovered open port 587/tcp on 162.0.229.120
+Discovered open port 22/tcp on 45.33.32.156
+Discovered open port 80/tcp on 45.33.32.156
+Discovered open port 80/tcp on 162.0.229.120
+Discovered open port 443/tcp on 162.0.229.120
+Discovered open port 443/tcp on 8.8.8.8
+Discovered open port 26/tcp on 162.0.229.120
+SYN Stealth Scan Timing: About 29.72% done; ETC: 12:39 (0:01:13 remaining)
+SYN Stealth Scan Timing: About 56.20% done; ETC: 12:39 (0:00:48 remaining)
+Discovered open port 31337/tcp on 45.33.32.156
+Discovered open port 9929/tcp on 45.33.32.156
+SYN Stealth Scan Timing: About 75.99% done; ETC: 12:39 (0:00:31 remaining)
+Discovered open port 465/tcp on 162.0.229.120
+Completed SYN Stealth Scan against 45.33.32.156 in 130.38s (2 hosts left)
+Completed SYN Stealth Scan against 162.0.229.120 in 135.61s (1 host left)
+Completed SYN Stealth Scan at 12:39, 136.03s elapsed (3000 total ports)
+Nmap scan report for 8.8.8.8
+Host is up (0.23s latency).
+Not shown: 998 filtered tcp ports (no-response)
+PORT    STATE SERVICE
+53/tcp  open  domain
+443/tcp open  https
+
+Nmap scan report for 162.0.229.120
+Host is up (0.47s latency).
+Not shown: 988 filtered tcp ports (no-response)
+PORT    STATE  SERVICE
+20/tcp  closed ftp-data
+21/tcp  open   ftp
+26/tcp  open   rsftp
+53/tcp  open   domain
+80/tcp  open   http
+110/tcp open   pop3
+143/tcp open   imap
+443/tcp open   https
+465/tcp open   smtps
+587/tcp open   submission
+993/tcp open   imaps
+995/tcp open   pop3s
+
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.52s latency).
+Not shown: 995 closed tcp ports (reset)
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+25/tcp    filtered smtp
+80/tcp    open     http
+9929/tcp  open     nping-echo
+31337/tcp open     Elite
+
+Read data files from: c:\Program Files (x86)\Nmap
+Nmap done: 3 IP addresses (3 hosts up) scanned in 138.94 seconds
+           Raw packets sent: 5187 (228.160KB) | Rcvd: 1543 (63.536KB)
+
+c:\Program Files (x86)\Nmap>ping 993/tcp
+Ping request could not find host 993/tcp. Please check the name and try again.
+
+c:\Program Files (x86)\Nmap>ping 127.1.1.1
+
+Pinging 127.1.1.1 with 32 bytes of data:
+Reply from 127.1.1.1: bytes=32 time<1ms TTL=128
+Reply from 127.1.1.1: bytes=32 time<1ms TTL=128
+Reply from 127.1.1.1: bytes=32 time<1ms TTL=128
+Reply from 127.1.1.1: bytes=32 time<1ms TTL=128
+
+Ping statistics for 127.1.1.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+c:\Program Files (x86)\Nmap>nmap -n scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:43 India Standard Time
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+^C
+c:\Program Files (x86)\Nmap>nmap -p1-100 scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:47 India Standard Time
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.53s latency).
+Not shown: 98 closed tcp ports (reset)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 2.94 seconds
+
+c:\Program Files (x86)\Nmap>nmap -p500-1000 scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:48 India Standard Time
+Nmap scan report for scanme.nmap.org (45.33.32.156)
+Host is up (0.34s latency).
+All 501 scanned ports on scanme.nmap.org (45.33.32.156) are in ignored states.
+Not shown: 501 closed tcp ports (reset)
+
+Nmap done: 1 IP address (1 host up) scanned in 5.01 seconds
+
+c:\Program Files (x86)\Nmap>nmap -p1-60000 scanme.nmap.org
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-11-15 12:49 India Standard Time
+
+
+
+                                                                                                                      
